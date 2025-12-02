@@ -1,6 +1,6 @@
 # gabrielmoon.github.io
 <html>
 <body>
-    <p>hi durfland.</p>
+    <p>Durfland.</p>
 </body>
 </html>
