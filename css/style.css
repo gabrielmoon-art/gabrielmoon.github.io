@@ -16,3 +16,14 @@ body {
 a {
     color: #d3d3d3;
 }
+
+.clickable-img {
+    width: 200px;
+    height: auto;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.clickable-img:hover {
+    filter: hue-rotate(90deg)
+}
