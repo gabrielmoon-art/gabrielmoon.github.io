@@ -1,4 +1,7 @@
+@font-face {
+    font-family: "source-sans-pro";
+    src: url("..fonts/SourceSansPro-Bold.otf");
+}
 body {
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: 700; /* 700 = bold */
+	font-family: source-sans-pro;
 }
