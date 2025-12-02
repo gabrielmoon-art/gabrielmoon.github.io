@@ -18,10 +18,12 @@ a {
 }
 
 .clickable-img {
-    width: 80px;
-    height: 80px;
+    width: 45px;
+    height: 45px;
     transition: 0.3s;
     cursor: pointer;
 }
 
-.clickable-img:hover;
+.clickable-img:hover {
+    filter: brightness(1.2); 
+}
