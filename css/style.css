@@ -1,9 +1,9 @@
 @font-face {
-font-family: "yu-gothic-ui";
-src: url("../fonts/YuGothR.ttc")
+font-family: "source-sans-pro";
+src: url("../fonts/SourceSansPro-Bold.otf")
 }
 
 h1 {
-  font-family: yu-gothic-ui;
+  font-family: source-sans-pro;
   font-size: 4.5em;
  }
