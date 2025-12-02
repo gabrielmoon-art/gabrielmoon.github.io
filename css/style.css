@@ -1,3 +1,9 @@
-body {
-font-family: Arial, sans-serif;
+@font-face {
+font-family: "yu-gothic-ui";
+src: url("../fonts/YuGothR.ttc")
 }
+
+h1 {
+  font-family: yu-gothic-ui;
+  font-size: 4.5em;
+ }
