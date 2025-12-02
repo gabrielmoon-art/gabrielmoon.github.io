@@ -2,6 +2,11 @@
     font-family: "source-sans-pro";
     src: url("..fonts/SourceSansPro-Bold.otf");
 }
+a {
+    color: #d3d3d3;
+}
 body {
+    background-color: black;
+    color: white;
 	font-family: source-sans-pro;
 }
