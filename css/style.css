@@ -5,8 +5,10 @@
 a {
     color: #d3d3d3;
 }
+html {
+	background-color: #1a1a1a;
+}
 body {
-    background-color: black;
-    color: white;
 	font-family: source-sans-pro;
+	color: #ededed;
 }
