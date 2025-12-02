@@ -18,12 +18,10 @@ a {
 }
 
 .clickable-img {
-    width: 200px;
-    height: auto;
+    width: 80px;
+    height: 80px;
     transition: 0.3s;
     cursor: pointer;
 }
 
-.clickable-img:hover {
-    filter: hue-rotate(90deg)
-}
+.clickable-img:hover;
