@@ -65,8 +65,8 @@ a {
 
 .side-gif {
     position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 45%;
+    transform: translateY(-45%);
     width: 45px;
     z-index: 10; 
 }
