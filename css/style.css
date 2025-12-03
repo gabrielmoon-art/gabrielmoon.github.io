@@ -34,7 +34,7 @@ a {
 }
 
 .video-container {
-    max-width: 560px;
+    max-width: 450px;
 }
 
 .video-caption {
@@ -61,4 +61,20 @@ a {
 
 .clickable-img:hover {
     filter: brightness(1.4);
+}
+
+.side-gif {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 45px;
+    z-index: 10; 
+}
+
+.left-gif {
+    left: 0;
+}
+
+.right-gif {
+    right: 0;
 }
