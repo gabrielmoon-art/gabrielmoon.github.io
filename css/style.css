@@ -4,26 +4,20 @@
     font-weight: bold;
 }
 
-html, body {
-    height: 100%;     
-    margin: 0;  
+@font-face {
+    font-family: "source-sans-pro";
+    src: url("..fonts/SourceSansPro-Bold.otf");
 }
-
-body {
-    font-family: "source-sans-pro", sans-serif;
-    color: #ededed;
-    background-color: #1a1a1a;
-    
-    display: flex;          
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;   
-    text-align: center;
-}
-
 a {
-    color: #9c9c9c;
+    color: #d3d3d3;
 }
+html {
+    background-color: #1a1a1a;
+}
+body {
+    font-family: source-sans-pro;
+    color: #ededed;
+} 
 
 .clickable-img {
     width: 45px;
