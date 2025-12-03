@@ -3,11 +3,6 @@
     src: url("../fonts/SourceSansPro-Bold.otf") format("opentype");
     font-weight: bold;
 }
-
-@font-face {
-    font-family: "source-sans-pro";
-    src: url("..fonts/SourceSansPro-Bold.otf");
-}
 a {
     color: #d3d3d3;
 }
