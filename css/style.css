@@ -3,16 +3,48 @@
     src: url("../fonts/SourceSansPro-Bold.otf") format("opentype");
     font-weight: bold;
 }
-a {
-    color: #d3d3d3;
-}
+
 html {
     background-color: #1a1a1a;
 }
+
 body {
-    font-family: source-sans-pro;
+    margin: 0;
+    text-align: center;
+    font-family: "source-sans-pro", sans-serif;
     color: #ededed;
-} 
+}
+
+a {
+    color: #d3d3d3;
+}
+
+/* --- Video Layout --- */
+.video-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.video-container {
+    max-width: 560px;
+}
+
+.video-caption {
+    color: #ededed;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+/* --- Images --- */
+.image-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
 
 .clickable-img {
     width: 45px;
@@ -22,14 +54,5 @@ body {
 }
 
 .clickable-img:hover {
-    filter: brightness(1.4); 
-}
-
-.video-caption {
-    color: #ededed;
-    font-family: "source-sans-pro", sans-serif;
-    font-weight: bold;
-    margin-bottom: 5px;
-
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    filter: brightness(1.4);
 }
