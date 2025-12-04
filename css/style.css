@@ -39,7 +39,7 @@ a {
 }
 
 .video-container {
-    max-width: 350px;
+    max-width: 250px;
 }
 
 .video-caption {
@@ -76,7 +76,7 @@ a {
 
 .gif-row {
   display: flex;
-  gap: 20px;             
+  gap: 25px;             
   flex-wrap: nowrap;   
   justify-content: center; 
   flex-shrink: 1;
