@@ -64,6 +64,6 @@ a {
 }
 
 .moongirl {
-    width: 200px;
-    height: 431px;
+  width: 200px;
+  height: auto; 
 }
