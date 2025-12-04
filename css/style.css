@@ -62,19 +62,3 @@ a {
 .clickable-img:hover {
     filter: brightness(1.4);
 }
-
-.side-gif {
-    position: fixed;
-    top: 45%;
-    transform: translateY(-45%);
-    width: 45px;
-    z-index: 10; 
-}
-
-.left-gif {
-    left: 0;
-}
-
-.right-gif {
-    right: 0;
-}
