@@ -90,5 +90,14 @@
   height: auto;
 }
 </style>
+
+<script>
+  const gifs = document.querySelectorAll('.moongirl');
+  gifs.forEach((gif, index) => {
+    setTimeout(() => {
+      gif.style.display = 'block';
+    }, index * 5);
+  });
+</script>
 </body>
 </html>
