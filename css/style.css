@@ -67,13 +67,15 @@ a {
 }
 
 .moongirl {
-   width: 75px;
-   height: auto;
+  width: 40px;          
+  height: auto;
+  flex-shrink: 0;  
 }
 
 .gif-row {
   display: flex;
-  gap: 20px;             
-  flex-wrap: wrap;   
-  justify-content: center; 
+  justify-content: center;   
+  gap: 20px;           
+  overflow: hidden;         
+  padding: 10px 0;
 }
