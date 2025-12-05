@@ -76,8 +76,8 @@ a {
 
 .gif-row {
   display: flex;
-  gap: 24px;             
-  flex-wrap: wrap;   
+  gap: 26px;             
+  flex-wrap: nowrap;   
   justify-content: center; 
   flex-shrink: 1;
   flex-grow: 1;
