@@ -34,12 +34,11 @@ header {
 }
 
 .topnav {
-  overflow: hidden;
-  background-color: #555555; 
-  padding: 16px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #555555;
+  padding: 16px 30px;
 }
 
 .topnav .logo {
@@ -48,19 +47,19 @@ header {
   color: #ffffff;
 }
 
-.topnav nav a {
+.topnav .nav-links {
+  display: flex;
+  gap: 40px; 
+}
+
+.topnav .nav-links a {
   color: #ffffff;
   text-decoration: none;
-  margin-left: 40px;
   font-size: 16px;
   transition: color 0.3s;
 }
 
-.topnav nav a:first-child {
-  margin-left: 0; 
-}
-
-.topnav nav a:hover {
+.topnav .nav-links a:hover {
   color: #ffd700;
 }
 
