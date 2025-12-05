@@ -70,13 +70,13 @@ a {
 
 .moongirl {
   width: 10vw;       
-  max-width: 300px;   
+  max-width: 200px;   
   height: auto;
 }
 
 .gif-row {
   display: flex;
-  gap: 26px;             
+  gap: 20px;             
   flex-wrap: nowrap;   
   justify-content: center; 
   flex-shrink: 1;
