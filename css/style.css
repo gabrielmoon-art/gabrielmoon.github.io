@@ -89,11 +89,6 @@ a {
 .moongirl {
   width: 40px;          
   height: auto;
-  flex-shrink: 0;  
-}
-
-.gif-row {
-  justify-content: center;   
-  gap: 20px;           
-  overflow: hidden;         
+  flex-shrink: 0; 
+  overflow: hidden;   
 }
