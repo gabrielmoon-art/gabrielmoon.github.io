@@ -20,10 +20,30 @@ body {
     color: #ededed;
 }
 
-.topnav {
-  overflow: hidden;
-  background-color: #555555; 
-  padding: 16px;
+header {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #555555;
+  color: #ededed;
+}
+
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+    filter: brightness(1.4);
 }
 
 a {
