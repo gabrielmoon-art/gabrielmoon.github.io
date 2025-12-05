@@ -33,22 +33,10 @@ header {
   z-index: 1000;
 }
 
-header .logo {
-  font-size: 40px;
-  font-weight: bold;
-  margin-right: 50px;
-}
-
-header nav a {
-  color: #ffffff;
-  text-decoration: none;
-  margin-left: 40px; 
-  font-size: 16px;
-  transition: color 0.3s;
-}
-
-header nav a:hover {
-    filter: brightness(1.4);
+.topnav {
+  overflow: hidden;
+  background-color: #555555; 
+  padding: 16px;
 }
 
 a {
