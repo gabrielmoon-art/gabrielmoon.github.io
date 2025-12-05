@@ -87,8 +87,7 @@ a {
 }
 
 .moongirl {
-  width: 40px;          
-  height: auto;
-  flex-shrink: 0; 
-  overflow: hidden;   
+      width: 50px;
+      height: auto;
+      margin: 0 5px; 
 }
