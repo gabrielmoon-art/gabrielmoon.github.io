@@ -73,9 +73,7 @@ a {
 }
 
 .gif-row {
-  display: flex;
   justify-content: center;   
   gap: 20px;           
   overflow: hidden;         
-  padding: 10px 0;
 }
