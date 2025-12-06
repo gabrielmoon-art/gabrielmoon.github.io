@@ -11,6 +11,7 @@ html {
 body {
     padding: 0;
     display: flex;
+	flex-direction: column;
     justify-content: center; 
     align-items: center;     
     height: 100vh;          
@@ -22,6 +23,7 @@ body {
 
 header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between; 
   align-items: center;
   padding: 15px 30px;
@@ -35,6 +37,7 @@ header {
 
 .topnav {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   background-color: #555555;
@@ -49,6 +52,7 @@ header {
 
 .topnav .nav-links {
   display: flex;
+  flex-direction: column;
   gap: 40px; 
 }
 
@@ -87,6 +91,7 @@ a {
 
 .image-row {
     display: flex;
+	flex-direction: column;
     justify-content: center;
     gap: 20px;
     margin-top: 40px;
