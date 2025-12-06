@@ -16,6 +16,15 @@ body {
     color: #ededed;
 }
 
+a {
+    color: #d3d3d3; 
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;  
+}
+
 .logo img {
   width: 200px;   
   height: auto;
