@@ -111,21 +111,25 @@ a:hover {
 .moongirl-left { left: 10px; }
 .moongirl-right { right: 10px; }
 
-@keyframes float {
-  0%   { transform: translateY(-50%) translateY(0px); }
-  50%  { transform: translateY(-50%) translateY(-60px); }
-  100% { transform: translateY(-50%) translateY(0px); }
+:root {
+  --navbar-height: 80px;
+}
+
+
+@keyframes float-vertical {
+  0%   { top: calc(var(--navbar-height) + 0px); }
+  50%  { top: calc(100vh - 300px); } 
+  100% { top: calc(var(--navbar-height) + 0px); }
 }
 
 .moongirl-left,
 .moongirl-right {
   position: fixed;
-  top: 50%;
   width: 300px;
   height: auto;
   z-index: 999;
   pointer-events: none;
-  animation: float 4s ease-in-out infinite;
+  animation: float-vertical 4s ease-in-out infinite;
 }
 
 .moongirl-left { left: 10px; }
