@@ -39,6 +39,8 @@ a:hover {
   align-items: center;
   background-color: #555555;
   padding: 16px 30px;
+  position: relative;   /* needed for z-index to work */
+  z-index: 1000;        /* higher than moongirls */
 }
 
 /* nav images */
@@ -116,9 +118,9 @@ a:hover {
 }
 
 @keyframes float-vertical {
-  0%   { top: calc(var(--navbar-height) + 10px); }
-  50%  { top: calc(100vh - 310px); }  
-  100% { top: calc(var(--navbar-height) + 10px); }
+  0%   { top: calc(var(--navbar-height) + 10px); } 
+  50%  { top: calc(100vh - 200px); }               
+  100% { top: calc(var(--navbar-height) + 10px); } 
 }
 
 .moongirl-left,
