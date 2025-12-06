@@ -112,14 +112,14 @@ a:hover {
 .moongirl-right { right: 10px; }
 
 :root {
-  --navbar-height: 80px;
+  --navbar-height: 96px; /* change this to match your navbar height */
 }
 
-
+/* vertical floating animation */
 @keyframes float-vertical {
-  0%   { top: calc(var(--navbar-height) + 0px); }
-  50%  { top: calc(100vh - 300px); } 
-  100% { top: calc(var(--navbar-height) + 0px); }
+  0%   { top: calc(var(--navbar-height) + 10px); }     
+  50%  { top: calc(100vh - 310px); }             
+  100% { top: calc(var(--navbar-height) + 10px); }   
 }
 
 .moongirl-left,
@@ -129,7 +129,7 @@ a:hover {
   height: auto;
   z-index: 999;
   pointer-events: none;
-  animation: float-vertical 4s ease-in-out infinite;
+  animation: float-vertical 6s ease-in-out infinite;
 }
 
 .moongirl-left { left: 10px; }
