@@ -112,14 +112,13 @@ a:hover {
 .moongirl-right { right: 10px; }
 
 :root {
-  --navbar-height: 96px; /* change this to match your navbar height */
+  --navbar-height: 0px; /* will be updated by JS */
 }
 
-/* vertical floating animation */
 @keyframes float-vertical {
-  0%   { top: calc(var(--navbar-height) + 10px); }     
-  50%  { top: calc(100vh - 310px); }             
-  100% { top: calc(var(--navbar-height) + 10px); }   
+  0%   { top: calc(var(--navbar-height) + 10px); }
+  50%  { top: calc(100vh - 310px); }  
+  100% { top: calc(var(--navbar-height) + 10px); }
 }
 
 .moongirl-left,
