@@ -113,7 +113,7 @@ a:hover {
 
 @keyframes float {
   0%   { transform: translateY(-50%) translateY(0px); }
-  50%  { transform: translateY(-50%) translateY(-20px); }
+  50%  { transform: translateY(-50%) translateY(-60px); }
   100% { transform: translateY(-50%) translateY(0px); }
 }
 
@@ -125,10 +125,9 @@ a:hover {
   height: auto;
   z-index: 999;
   pointer-events: none;
-  animation: float 4s ease-in-out infinite; /* add this line */
+  animation: float 4s ease-in-out infinite;
 }
 
-/* left and right positions remain */
 .moongirl-left { left: 10px; }
 .moongirl-right { right: 10px; }
 
