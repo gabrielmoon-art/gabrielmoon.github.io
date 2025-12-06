@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "source-sans-pro";
+    src: url("../fonts/SourceSansPro-Bold.otf") format("opentype");
+    font-weight: bold;
+}
+
+html {
+    background-color: #1a1a1a;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: "source-sans-pro", sans-serif;
+    color: #ededed;
+}
+
+a {
+    color: #d3d3d3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* logo */
+.logo img {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+/* top nav */
+.topnav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #555555;
+  padding: 16px 30px;
+  position: relative;   /* needed for z-index to work */
+  z-index: 1000;        /* higher than moongirls */
+}
+
+/* nav images */
+.nav-links img {
+  width: 120px;
+  height: auto;
+  transition: 0.3s ease;
+}
+
+.nav-links img:hover {
+  filter: brightness(1.3);
+}
