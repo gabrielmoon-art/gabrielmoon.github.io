@@ -45,12 +45,18 @@ body {
 .video-row {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     gap: 40px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; 
 }
 
 .video-container {
-    max-width: 250px;
+    width: 350px;   
+}
+
+.video-container iframe {
+    width: 350px;
+    height: 350px;
 }
 
 .video-caption {
