@@ -37,10 +37,24 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #555555;
+
+  /* Brighter + more solid */
+  background: rgba(120, 120, 120, 0.32);
+
+  /* Strong frosted-glass effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* Bright highlight border */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+
+  /* Soft glow to lift it from the background */
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.08);
+
   padding: 16px 30px;
-  position: relative;   /* needed for z-index to work */
-  z-index: 1000;        /* higher than moongirls */
+
+  position: relative;
+  z-index: 1000;
 }
 
 /* nav images */

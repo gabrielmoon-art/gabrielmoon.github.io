@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("particles");
 
-  const PARTICLE_COUNT = 500; // increase for more particles
+  const PARTICLE_COUNT = 600; // increase for more particles
 
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     let p = document.createElement("div");
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     p.style.animationDuration = duration + "s";
 
     // Randomize size
-    let size = 3 + Math.random() * 3;
+    let size = 5 + Math.random() * 3;
     p.style.width = size + "px";
     p.style.height = size + "px";
 
