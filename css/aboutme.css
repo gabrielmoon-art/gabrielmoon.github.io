@@ -59,3 +59,82 @@ a:hover {
 	width: 364px;
     height: auto;
 }
+
+@media (max-width: 1024px) {
+
+    .moongirlgif {
+        width: 260px;
+    }
+
+    .topnav {
+        padding: 12px 20px;
+    }
+
+    .nav-links img {
+        width: 90px;
+    }
+
+    h1, h2, h3, h5, h6 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    iframe {
+        width: 60%;
+    }
+}
+
+/* ---------- RESPONSIVE: Phones (max-width 600px) ---------- */
+@media (max-width 600px) {
+
+    body {
+        text-align: center;
+    }
+
+    /* shrink GIF */
+    .moongirlgif {
+        width: 160px;
+    }
+
+    /* wrap navbar icons */
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .nav-links img {
+        width: 70px;
+    }
+
+    /* smaller logo */
+    .logo img {
+        width: 150px;
+    }
+
+    /* smaller text margins */
+    h1, h2, h3, h5, h6 {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+
+    /* make Spotify player usable on phones */
+    iframe {
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px) {
+    .moongirlgif {
+        width: 130px;
+    }
+
+    .logo img {
+        width: 130px;
+    }
+
+    iframe {
+        width: 95%;
+    }
+}
