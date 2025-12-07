@@ -75,6 +75,13 @@ a:hover {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.5s ease,
+    opacity 0.35s ease;
+}
 }
 
 /* LEFT SIDE */
@@ -217,10 +224,76 @@ a:hover {
   }
 }
 
-/* Mobile scaling */
+/* ============================
+   MOBILE FRIENDLY FIXES
+   ============================ */
 @media (max-width: 600px) {
+
+  /* Make album block fit screen */
+  .album-block {
+    width: 90%;
+    margin: 15px auto;
+    padding: 12px;
+  }
+
+  /* Stack cover + tracklist vertically */
+  .album-layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Album cover centered and responsive */
+  .album-cover {
+    width: 80%;
+    height: auto;
+    max-width: 280px;
+  }
+
+  /* Tracklist full width */
+  .left {
+    width: 100%;
+  }
+
+  /* Tracklist spacing */
+  .tracklist li {
+    grid-template-columns: 25px 1fr auto;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  .tracklist .title {
+    padding-left: 6px;
+  }
+
+  /* Streaming icons centered and scaled */
+  .stream-icons {
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .stream-icons img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Summary text bigger/tappable */
+  details summary {
+    font-size: 20px;
+    padding: 10px 0;
+  }
+
+  /* Fix blob bounce on mobile */
   .blob-bounce {
-    width: 120px;
-    right: 15px;
+    width: 200px;
+    right: 10px;
+    bottom: 0;
+    animation-duration: 2.5s;
+  }
+
+  /* Prevent horizontal scrolling */
+  body, html {
+    overflow-x: hidden;
   }
 }

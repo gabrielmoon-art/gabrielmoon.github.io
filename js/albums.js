@@ -1,23 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("details.album-block").forEach((block) => {
-        const content = block.querySelector(".album-layout");
+  const detailsBlocks = document.querySelectorAll("details.album-block");
 
-        if (!content) return;
+  detailsBlocks.forEach(details => {
+    const content = details.querySelector(".album-layout");
 
-        // Start closed
-        content.style.maxHeight = "0px";
-        content.style.opacity = "0";
+    // Ensure start state
+    content.style.overflow = "hidden";
+    content.style.maxHeight = details.open ? content.scrollHeight + "px" : "0px";
+    content.style.opacity = details.open ? "1" : "0";
 
-        block.addEventListener("toggle", () => {
-            if (block.open) {
-                // Expand
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.opacity = "1";
-            } else {
-                // Collapse
-                content.style.maxHeight = "0px";
-                content.style.opacity = "0";
-            }
+    // Handle clicks manually
+    details.querySelector("summary").addEventListener("click", (e) => {
+      e.preventDefault(); // stop instant toggle
+
+      if (!details.open) {
+        // OPEN ANIMATION
+        details.open = true;
+        requestAnimationFrame(() => {
+          content.style.maxHeight = content.scrollHeight + "px";
+          content.style.opacity = "1";
         });
+      } else {
+        // CLOSE ANIMATION
+        content.style.maxHeight = content.scrollHeight + "px"; // set current height
+        requestAnimationFrame(() => {
+          content.style.maxHeight = "0px";
+          content.style.opacity = "0";
+        });
+
+        // Delay actual <details> closing
+        setTimeout(() => {
+          details.open = false;
+        }, 500); // matches CSS transition time
+      }
     });
+  });
+});
+
+detailsBlocks.forEach(other => {
+  if (other !== details) other.open = false;
 });
