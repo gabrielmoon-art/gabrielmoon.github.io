@@ -259,7 +259,7 @@ a:hover {
 
   /* Album cover centered and responsive */
   .album-cover {
-    width: 80%;
+    width: 120%;
     height: auto;
     max-width: 280px;
   }
