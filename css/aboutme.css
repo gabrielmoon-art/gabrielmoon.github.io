@@ -53,3 +53,9 @@ a:hover {
 .nav-links img:hover {
   filter: brightness(1.3);
 }
+
+.moongirlgif {
+	align-items: right;
+	width: 364px;
+    height: auto;
+}
