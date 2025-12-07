@@ -60,6 +60,32 @@ a:hover {
     height: auto;
 }
 
+.divider {
+  width: 60%;
+  margin: 40px auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #777, transparent);
+  animation: dividerFade 3s infinite alternate ease-in-out;
+}
+
+@keyframes dividerFade {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.about-container {
+    width: 100%;
+    max-width: 800px; /* prevents stretching across page */
+    margin: 0 auto;   /* centers the text block */
+    text-align: center; /* optional: looks cleaner than centered paragraphs */
+    padding: 20px 0;
+}
+
+.about-container h3 {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 @media (max-width: 1024px) {
 
     .moongirlgif {
