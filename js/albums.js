@@ -37,10 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-detailsBlocks.forEach(other => {
-  if (other !== details) other.open = false;
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("particles");
 
