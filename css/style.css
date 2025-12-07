@@ -87,6 +87,16 @@ a:hover {
     margin-top: 40px;
 }
 
+.icon {
+  text-align: center;
+}
+
+.icon p {
+  font-size: 14px;
+  margin-top: 6px;
+  color: #ffffff;
+}
+
 .clickable-img {
     width: 45px;
     height: 45px;
