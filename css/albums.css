@@ -1,0 +1,226 @@
+@font-face {
+    font-family: "source-sans-pro";
+    src: url("../fonts/SourceSansPro-Bold.otf") format("opentype");
+    font-weight: bold;
+}
+
+html {
+    background-color: #1a1a1a;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: "source-sans-pro", sans-serif;
+    color: #ededed;
+}
+
+a {
+    color: #d3d3d3;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+/* logo */
+.logo img {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
+/* top nav */
+.topnav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #555555;
+  padding: 16px 30px;
+  position: relative;   /* needed for z-index to work */
+  z-index: 1000;        /* higher than moongirls */
+}
+
+/* nav images */
+.nav-links img {
+  width: 120px;
+  height: auto;
+  transition: 0.3s ease;
+}
+
+.nav-links img:hover {
+  filter: brightness(1.3);
+}
+
+.moongirlgif {
+	align-items: right;
+	width: 364px;
+    height: auto;
+}
+
+/* Album container */
+.album-block {
+  background: #1f1f1f;
+  padding: 10px 15px;
+  margin: 20px auto;
+  width: 600px;
+  border-radius: 6px;
+  color: #e0e6ed;
+}
+
+/* Expandable content layout */
+.album-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* LEFT SIDE */
+.left {
+  width: 65%;
+}
+
+/* Album cover */
+.album-cover {
+  width: 180px;
+  height: 180px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+/* Streaming icons */
+.stream-icons {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+}
+
+.stream-icons img {
+  width: 38px;
+  height: 38px;
+  filter: brightness(0.75);
+  transition: 0.2s;
+}
+
+.stream-icons img:hover {
+  filter: brightness(1.1);
+}
+
+/* Responsive fix for mobile */
+@media (max-width: 600px) {
+  .album-layout {
+    flex-direction: column;
+    align-items: left;
+  }
+
+  .album-cover {
+    width: 200px;
+    height: 200px;
+    margin-top: 15px;
+  }
+
+  .left {
+    width: 100%;
+  }
+}
+
+.album-block summary:hover {
+  color: #ffffff;
+}
+
+/* Tracklist */
+.tracklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* Individual track rows */
+.tracklist li {
+  display: grid;
+  grid-template-columns: 30px 1fr auto;
+  padding: 10px 12px;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #1a1a1a;
+  font-size: 15px;
+  align-items: left;
+}
+
+.tracklist li:nth-child(odd) {
+  background-color: #1a1a1a;
+}
+
+/* Number column */
+.tracklist .num {
+  opacity: 0.7;
+}
+
+/* Track title */
+.tracklist .title {
+  padding-left: 10px;
+}
+
+/* Timestamp column */
+.tracklist .time {
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+/* Total length */
+.total {
+  text-align: right;
+  padding: 8px 12px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.blob-bounce {
+  position: fixed;
+  right: 40px;
+  bottom: 0;
+  width: 600px;
+  pointer-events: none;
+  z-index: 999;
+
+  animation: blobBounce 2.2s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes blobBounce {
+  0% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+  }
+  15% {
+    transform: translateY(-160px) scaleX(0.95) scaleY(1.05); /* stretch upward */
+  }
+  30% {
+    transform: translateY(0) scaleX(1.2) scaleY(0.8); /* big squish */
+  }
+  45% {
+    transform: translateY(-100px) scaleX(0.9) scaleY(1.1); /* smaller stretch */
+  }
+  60% {
+    transform: translateY(0) scaleX(1.15) scaleY(0.85); /* smaller squish */
+  }
+  75% {
+    transform: translateY(-45px) scaleX(0.95) scaleY(1.05);
+  }
+  90% {
+    transform: translateY(0) scaleX(1.08) scaleY(0.92);
+  }
+  100% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+  }
+}
+
+/* Mobile scaling */
+@media (max-width: 600px) {
+  .blob-bounce {
+    width: 120px;
+    right: 15px;
+  }
+}
