@@ -68,6 +68,21 @@ a:hover {
   filter: brightness(1.3);
 }
 
+a img {
+  max-width: 30%;
+  height: auto;
+}
+
+a img {
+  cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+a img:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
 #particles {
   position: fixed;
   top: 0;
