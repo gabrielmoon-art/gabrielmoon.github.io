@@ -166,12 +166,46 @@ a:hover {
 .viewer {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.92);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 2000;
+  overflow: hidden; /* important for grain */
+}
+
+.viewer::after {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background-image:
+    repeating-radial-gradient(
+      circle,
+      rgba(255,255,255,0.05) 0px,
+      rgba(0,0,0,0.05) 1px,
+      rgba(255,255,255,0.05) 2px
+    );
+  opacity: 0.15;
+  animation: grainMove 1.5s steps(6) infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.viewer > * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes grainMove {
+  0%   { transform: translate(0, 0); }
+  20%  { transform: translate(-5%, -10%); }
+  40%  { transform: translate(10%, 5%); }
+  60%  { transform: translate(-5%, 5%); }
+  80%  { transform: translate(5%, -5%); }
+  100% { transform: translate(0, 0); }
 }
 
 .viewer img {
