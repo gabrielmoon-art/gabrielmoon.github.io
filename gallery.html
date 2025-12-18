@@ -74,7 +74,7 @@
   </figure>
 </div>
 
-<!-- Viewer overlay -->
+<!-- Viewer Overlay -->
 <div class="viewer" id="viewer">
   <button class="close-btn" id="closeBtn">✕</button>
 
@@ -83,11 +83,15 @@
     <button id="zoomOut">－</button>
     <button id="resetZoom">Reset</button>
   </div>
-  
-<img id="viewerImg" src="" alt="Expanded view">
-<div class="magnifier" id="magnifier"></div>
-<p class="viewer-caption" id="viewerCaption"></p>
 
-<script src="/js/gallery.js"></script>
+  <div class="viewer-image-wrap">
+    <img id="viewerImg" src="" alt="Expanded view">
+    <div class="magnifier" id="magnifier"></div>
+  </div>
+
+  <p class="viewer-caption" id="viewerCaption"></p>
+</div>
+
+<script src="./js/gallery.js"></script>
 </body>
 </html>
