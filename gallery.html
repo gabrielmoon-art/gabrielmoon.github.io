@@ -38,7 +38,56 @@
       </a>
     </nav>
   </div>
-<h1> W.I.P </h1>
+  
+<h1 class="gallery-title">Gallery</h1>
+
+<!-- Thumbnail grid -->
+<div class="gallery-grid">
+  <figure>
+    <img src="./images/gallery/Image677.jpg" alt="Darkness" data-caption="Darkness">
+    <figcaption>Darkness</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./images/gallery/Image678.jpg" alt="Moongirl" data-caption="Moongirl">
+    <figcaption>Moongirl</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./images/gallery/Image666.jpg" alt="Moongirl #2" data-caption="Moongirl #2">
+    <figcaption>Moongirl #2</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./images/gallery/Image95.png" alt="Moongirl #3" data-caption="Moongirl #3">
+    <figcaption>Moongirl #3</figcaption>
+  </figure>
+  
+  <figure>
+    <img src="./images/gallery/Image688.jpg" alt="Starsailers" data-caption="Starsailers">
+    <figcaption>Starsailers</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./images/gallery/Image679.jpg" alt="Magnitude 9" data-caption="Magnitude 9">
+    <figcaption>Magnitude 9</figcaption>
+  </figure>
+</div>
+
+<!-- Viewer overlay -->
+<div class="viewer" id="viewer">
+  <button class="close-btn" id="closeBtn">✕</button>
+
+  <div class="viewer-controls">
+    <button id="zoomIn">＋</button>
+    <button id="zoomOut">－</button>
+    <button id="resetZoom">Reset</button>
+  </div>
+
+  <img id="viewerImg" src="" alt="Expanded view">
+  <p class="viewer-caption" id="viewerCaption"></p>
+</div>
+
 <script src="/js/gallery.js"></script>
 </body>
 </html>

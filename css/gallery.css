@@ -99,3 +99,131 @@ a:hover {
     transform: translateX(-200px) translateY(40px);
   }
 }
+/* ---------- Scrollbars ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #666, #999);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #888, #bbb);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #121212;
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery-title {
+  margin: 30px 0;
+  letter-spacing: 2px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.gallery-grid figure {
+  margin: 0;
+}
+
+.gallery-grid img {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.2);
+}
+
+.gallery-grid figcaption {
+  margin-top: 6px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* ---------- Viewer ---------- */
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.viewer img {
+  max-width: 90vw;
+  max-height: 65vh;
+  transition: transform 0.25s ease;
+}
+
+.viewer-caption {
+  margin-top: 14px;
+  font-size: 14px;
+  opacity: 0.9;
+  max-width: 80vw;
+}
+
+/* Controls */
+.viewer-controls {
+  margin-bottom: 12px;
+}
+
+.viewer-controls button {
+  margin: 0 6px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.viewer-controls button:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .viewer img {
+    max-height: 55vh;
+  }
+
+  .gallery-grid figcaption {
+    font-size: 12px;
+  }
+}
