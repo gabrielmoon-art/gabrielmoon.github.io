@@ -192,6 +192,31 @@ a:hover {
   margin-bottom: 12px;
 }
 
+.magnifier {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.7);
+  box-shadow: 0 0 20px rgba(255,255,255,0.25);
+  background-repeat: no-repeat;
+  background-size: 200%;
+  pointer-events: none;
+  display: none;
+  z-index: 2100;
+}
+
+.viewer-image-wrap {
+  position: relative;
+  max-height: 70vh;
+  overflow: hidden; /* 🔑 prevents overlap */
+  margin-bottom: 16px;
+}
+
+.viewer img {
+  transform-origin: center center;
+}
+
 .viewer-controls button {
   margin: 0 6px;
   padding: 8px 14px;

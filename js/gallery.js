@@ -78,3 +78,44 @@ document.addEventListener("keydown", (e) => {
     viewer.style.display = "none";
   }
 });
+
+const magnifier = document.getElementById("magnifier");
+let magnifierZoom = 2.5;
+
+viewerImg.addEventListener("mousemove", (e) => {
+  const rect = viewerImg.getBoundingClientRect();
+
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const xPercent = (x / rect.width) * 100;
+  const yPercent = (y / rect.height) * 100;
+
+  magnifier.style.display = "block";
+  magnifier.style.left = `${e.clientX - 90}px`;
+  magnifier.style.top = `${e.clientY - 90}px`;
+
+  magnifier.style.backgroundImage = `url(${viewerImg.src})`;
+  magnifier.style.backgroundSize = `${rect.width * magnifierZoom}px ${rect.height * magnifierZoom}px`;
+  magnifier.style.backgroundPosition = `${xPercent}% ${yPercent}%`;
+});
+
+viewerImg.addEventListener("mouseleave", () => {
+  magnifier.style.display = "none";
+});
+
+viewerImg.addEventListener("touchmove", (e) => {
+  const touch = e.touches[0];
+  const rect = viewerImg.getBoundingClientRect();
+
+  const x = touch.clientX - rect.left;
+  const y = touch.clientY - rect.top;
+
+  magnifier.style.display = "block";
+  magnifier.style.left = `${touch.clientX - 90}px`;
+  magnifier.style.top = `${touch.clientY - 90}px`;
+
+  magnifier.style.backgroundImage = `url(${viewerImg.src})`;
+  magnifier.style.backgroundSize = `${rect.width * magnifierZoom}px ${rect.height * magnifierZoom}px`;
+  magnifier.style.backgroundPosition = `${(x / rect.width) * 100}% ${(y / rect.height) * 100}%`;
+});
