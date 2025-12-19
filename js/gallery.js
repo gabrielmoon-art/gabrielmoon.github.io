@@ -24,90 +24,105 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-const thumbnails = document.querySelectorAll(".gallery-grid img");
-const viewer = document.getElementById("viewer");
-const viewerImg = document.getElementById("viewerImg");
-const viewerCaption = document.getElementById("viewerCaption");
-const magnifier = document.getElementById("magnifier");
+document.addEventListener("DOMContentLoaded", () => {
+  const thumbnails = document.querySelectorAll(".gallery-grid img");
+  const viewer = document.getElementById("viewer");
+  const viewerImg = document.getElementById("viewerImg");
+  const viewerCaption = document.getElementById("viewerCaption");
+  const magnifier = document.getElementById("magnifier");
+  const closeBtn = document.getElementById("closeBtn");
 
-const zoomInBtn = document.getElementById("zoomIn");
-const zoomOutBtn = document.getElementById("zoomOut");
-const resetZoomBtn = document.getElementById("resetZoom");
-const closeBtn = document.getElementById("closeBtn");
+  // Safety checks (prevents silent failures)
+  if (!viewer || !viewerImg || !viewerCaption || !magnifier || !closeBtn) {
+    console.error("Missing required elements. Check IDs: viewer, viewerImg, viewerCaption, magnifier, closeBtn");
+    return;
+  }
 
-let scale = 1;
-const magnifierZoom = 2.5;
+  let magnifierActive = false;
+  let magnifierZoom = 2.5;
 
-/* Open viewer */
-thumbnails.forEach(img => {
-  img.addEventListener("click", () => {
-    viewer.style.display = "flex";
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+  function openViewer(img) {
     viewerImg.src = img.src;
     viewerCaption.textContent = img.dataset.caption || "";
-    scale = 1;
-    viewerImg.style.transform = "scale(1)";
+
+    // show viewer with transition
+    viewer.style.display = "flex";
+    requestAnimationFrame(() => viewer.classList.add("active"));
+
+    // magnifier only becomes enabled after click (desktop only)
+    magnifierActive = !isTouch;
+    magnifierZoom = 2.5;
+    magnifier.style.display = "none";
+  }
+
+  function closeViewer() {
+    viewer.classList.remove("active");
+    magnifierActive = false;
+    magnifier.style.display = "none";
+
+    setTimeout(() => {
+      viewer.style.display = "none";
+      viewerImg.src = "";
+    }, 350);
+  }
+
+  thumbnails.forEach(img => {
+    img.addEventListener("click", () => openViewer(img));
+  });
+
+  closeBtn.addEventListener("click", closeViewer);
+
+  viewer.addEventListener("click", (e) => {
+    if (e.target === viewer) closeViewer();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeViewer();
+  });
+
+  // --- Magnifier follow ---
+  viewerImg.addEventListener("pointermove", (e) => {
+    if (!magnifierActive) return;
+
+    const rect = viewerImg.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // hide if outside image bounds
+    if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+      magnifier.style.display = "none";
+      return;
+    }
+
+    const radius = magnifier.offsetWidth / 2;
+
+    magnifier.style.display = "block";
+    magnifier.style.left = `${e.clientX - radius}px`;
+    magnifier.style.top = `${e.clientY - radius}px`;
+
+    magnifier.style.backgroundImage = `url(${viewerImg.src})`;
+    magnifier.style.backgroundRepeat = "no-repeat";
+    magnifier.style.backgroundSize = `${rect.width * magnifierZoom}px ${rect.height * magnifierZoom}px`;
+    magnifier.style.backgroundPosition = `${(x / rect.width) * 100}% ${(y / rect.height) * 100}%`;
+  });
+
+  viewerImg.addEventListener("pointerleave", () => {
     magnifier.style.display = "none";
   });
-});
 
-/* Zoom controls */
-zoomInBtn.addEventListener("click", () => {
-  scale += 0.2;
-  viewerImg.style.transform = `scale(${scale})`;
-});
+  // --- Scroll wheel zoom for magnifier ---
+  viewerImg.addEventListener("wheel", (e) => {
+    if (!magnifierActive) return;
 
-zoomOutBtn.addEventListener("click", () => {
-  scale = Math.max(0.4, scale - 0.2);
-  viewerImg.style.transform = `scale(${scale})`;
-});
+    // IMPORTANT: prevent the page from scrolling instead
+    e.preventDefault();
 
-resetZoomBtn.addEventListener("click", () => {
-  scale = 1;
-  viewerImg.style.transform = "scale(1)";
-});
+    const step = 0.2;
+    if (e.deltaY < 0) magnifierZoom += step;  // scroll up = zoom in
+    else magnifierZoom -= step;               // scroll down = zoom out
 
-/* Close viewer */
-closeBtn.addEventListener("click", () => {
-  viewer.style.display = "none";
-});
-
-viewer.addEventListener("click", (e) => {
-  if (e.target === viewer) viewer.style.display = "none";
-});
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") viewer.style.display = "none";
-});
-
-/* Magnifier */
-viewerImg.addEventListener("mousemove", (e) => {
-  const rect = viewerImg.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-
-  magnifier.style.display = "block";
-  magnifier.style.left = `${e.clientX - 90}px`;
-  magnifier.style.top = `${e.clientY - 90}px`;
-  magnifier.style.backgroundImage = `url(${viewerImg.src})`;
-  magnifier.style.backgroundSize = `${rect.width * magnifierZoom}px ${rect.height * magnifierZoom}px`;
-  magnifier.style.backgroundPosition = `${(x / rect.width) * 100}% ${(y / rect.height) * 100}%`;
-});
-
-viewerImg.addEventListener("mouseleave", () => {
-  magnifier.style.display = "none";
-});
-
-/* Touch support */
-viewerImg.addEventListener("touchmove", (e) => {
-  const touch = e.touches[0];
-  const rect = viewerImg.getBoundingClientRect();
-  const x = touch.clientX - rect.left;
-  const y = touch.clientY - rect.top;
-
-  magnifier.style.display = "block";
-  magnifier.style.left = `${touch.clientX - 90}px`;
-  magnifier.style.top = `${touch.clientY - 90}px`;
-  magnifier.style.backgroundImage = `url(${viewerImg.src})`;
-  magnifier.style.backgroundSize = `${rect.width * magnifierZoom}px ${rect.height * magnifierZoom}px`;
-  magnifier.style.backgroundPosition = `${(x / rect.width) * 100}% ${(y / rect.height) * 100}%`;
+    magnifierZoom = Math.min(Math.max(1.5, magnifierZoom), 6);
+  }, { passive: false });
 });
