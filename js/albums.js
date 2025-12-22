@@ -62,3 +62,28 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(p);
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const lyricButtons = document.querySelectorAll(".lyrics-toggle");
+
+  lyricButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent details collapse
+
+      const track = button.closest(".track");
+
+      // Close other open lyrics
+      document.querySelectorAll(".track.open").forEach(openTrack => {
+        if (openTrack !== track) {
+          openTrack.classList.remove("open");
+          const btn = openTrack.querySelector(".lyrics-toggle");
+          if (btn) btn.setAttribute("aria-expanded", "false");
+        }
+      });
+
+      // Toggle current
+      const isOpen = track.classList.toggle("open");
+      button.setAttribute("aria-expanded", isOpen);
+    });
+  });
+});
