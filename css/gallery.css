@@ -1,6 +1,7 @@
 @font-face {
-  font-family: "source-sans-pro";
-  src: url("../fonts/SourceSansPro-Bold.otf") format("opentype");
+  font-family: "Arial";
+  format("opentype");
+  font-style: italic;
   font-weight: bold;
 }
 
@@ -12,7 +13,8 @@ body {
   padding: 0;
   margin: 0;
   text-align: center;
-  font-family: "source-sans-pro", sans-serif;
+  font-family: "Arial";
+  font-style: italic;
   color: #ededed;
   overflow-x: hidden;
 }
