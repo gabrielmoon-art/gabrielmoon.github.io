@@ -295,65 +295,6 @@ a:hover {
   }
 }
 
-.track {
-  position: relative;
-  display: grid;
-  grid-template-columns: 30px 1fr auto auto;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Lyrics toggle button */
-.lyrics-toggle {
-  background: none;
-  border: none;
-  font-size: 13px;
-  font-style: italic;
-  color: rgba(255,255,255,0.55);
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.3s ease;
-}
-
-.lyrics-toggle:hover {
-  color: rgba(255,255,255,0.95);
-}
-
-/* Lyrics panel (hidden by default) */
-.lyrics-panel {
-  grid-column: 1 / -1;
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition:
-    max-height 0.45s ease,
-    opacity 0.3s ease;
-}
-
-.lyrics-panel p {
-  margin: 10px 0 0;
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: 0.85;
-}
-
-/* Open state */
-.track.open .lyrics-panel {
-  max-height: 400px;
-  opacity: 1;
-}
-
-.track.open .lyrics-toggle {
-  color: rgba(255,255,255,1);
-}
-
-/* Mobile spacing */
-@media (max-width: 600px) {
-  .lyrics-panel p {
-    font-size: 13px;
-  }
-}
-
 /* ============================
    MOBILE FRIENDLY FIXES
    ============================ */
