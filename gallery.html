@@ -4,25 +4,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>gallery</title>
-
+ 
   <meta property="og:title" content="gabriel moon">
   <meta property="og:description" content="gallery">
   <meta property="og:image" content="https://i.ibb.co/tMwskxNT/image-2025-12-04-184407123.png">
   <meta property="og:url" content="https://gabrielmoon.art">
   <meta property="og:type" content="website">
-
+ 
   <link rel="icon" href="https://i.ibb.co/tMwskxNT/image-2025-12-04-184407123.png" type="image/x-icon">
   <link rel="stylesheet" href="./css/gallery.css">
 </head>
-
+ 
 <body>
   <div id="particles"></div>
-
+ 
 <div class="topnav">
   <div class="site-title">
     <a href="https://gabrielmoon.art">gabriel moon</a>
   </div>
-
+ 
   <nav class="nav-links">
     <a href="/albums.html">albums</a>
     <a href="/gallery.html" class="active">gallery</a>
@@ -30,60 +30,145 @@
     <a href="/aboutme.html">about me</a>
   </nav>
 </div>
-
+ 
   <h1>Gallery</h1>
-
+ 
   <!-- Thumbnail grid -->
   <div class="gallery-grid">
+ 
     <figure>
-      <img src="./images/gallery/Image677.jpg">
+      <img src="./images/gallery/Album Covers/1 - 01. Welcome to Moonland.png" data-caption="Welcome to Moonland">
     </figure>
-
+ 
     <figure>
-      <img src="./images/gallery/Image678.jpg">
+      <img src="./images/gallery/Album Covers/1 - 02. Moonland.png" data-caption="Moonland">
     </figure>
-
+ 
     <figure>
-      <img src="./images/gallery/Image666.jpg">
+      <img src="./images/gallery/Album Covers/1 - 03. Saturn, ML.png" data-caption="Saturn, ML (drawn by atrcty)">
     </figure>
-
+ 
     <figure>
-      <img src="https://i.ibb.co/fVmdbHhS/Image95.png">
+      <img src="./images/gallery/Album Covers/1 - 04. Fly Away.png" data-caption="Fly Away">
     </figure>
-
+ 
     <figure>
-      <img src="./images/gallery/Image688.jpg">
+      <img src="./images/gallery/Album Covers/1 - 05. Moongirl.png" data-caption="Moongirl">
     </figure>
-
+ 
     <figure>
-      <img src="./images/gallery/Image679.jpg">
+      <img src="./images/gallery/Album Covers/1 - 06. Picnic Basket.jpg" data-caption="Picnic Basket">
     </figure>
-	
+ 
     <figure>
-      <img src="https://i.ibb.co/pBzjMG8W/Picnic-Basket.jpg">
+      <img src="./images/gallery/Album Covers/1 - 07. The Great Black.png" data-caption="The Great Black">
     </figure>
-	
-	<figure>
-      <img src="./images/gallery/Smile.jpg">
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/1 - 08. Starsailers.png" data-caption="Starsailers">
     </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/1 - 09. Darkness.jpg" data-caption="Darkness">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/1 - 10. Autumn Blues.png" data-caption="Autumn Blues (drawn by imafreakize)">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/1 - 11. Smile.png" data-caption="Smile">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/1 - 12. Magnitude 9.jpg" data-caption="Magnitude 9">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 01. White Room.png" data-caption="White Room">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 02. Porphyria.png" data-caption="Porphyria">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 03. Pandora.png" data-caption="Pandora">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 04. Superspace.png" data-caption="Superspace">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 05. Untitled.png" data-caption="Untitled">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 06. Happy.png" data-caption="Happy">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 07. Watershock.png" data-caption="Watershock (drawn by atrcty)">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 08. Country Mice.png" data-caption="Country Mice (drawn by atrcty)">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 09. Spider Lily.png" data-caption="Spider Lily">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 10. Mad Girl's Love Song.png" data-caption="Mad Girl's Love Song">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 11. Waning.png" data-caption="Waning (drawn by joseph)">
+    </figure>
+ 
+    <figure>
+      <img src="./images/gallery/Album Covers/2 - 12. Father.png" data-caption="Father">
+    </figure>
+ 
   </div>
-
+ 
   <!-- Viewer Overlay -->
   <div class="viewer" id="viewer" aria-hidden="true">
     <button class="close-btn" id="closeBtn" aria-label="Close">✕</button>
-
+ 
     <div class="viewer-nav" aria-label="Gallery navigation">
       <button id="prevImg" aria-label="Previous image">◀</button>
       <button id="nextImg" aria-label="Next image">▶</button>
     </div>
-
+ 
     <div class="viewer-image-wrap">
       <img id="viewerImg" src="" alt="">
     </div>
-
+ 
     <p class="viewer-caption" id="viewerCaption"></p>
   </div>
+ 
+   <h1>Extra Photos</h1>
+ 
+  <!-- Thumbnail grid -->
+  <div class="gallery-grid">
+    <figure>
+      <img src="./images/gallery/Image95.png" data-caption="Unused Cover">
+    </figure>
+	
+	 <figure>
+      <img src="./images/gallery/Image666.jpg" data-caption="Unused Cover">
+    </figure>
+	
+	 <figure>
+      <img src="./images/gallery/Image688.jpg" data-caption="Unused Starsailers Cover">
+    </figure>
 
+	 <figure>
+      <img src="./images/gallery/Smile.jpg" data-caption="Unused Smile Cover">
+    </figure>
   <script src="./js/gallery.js"></script>
 </body>
 </html>
