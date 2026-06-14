@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>chatbox!</title>
+  <link href="https://fonts.googleapis.com/css2?family=Verdana&family=Tahoma&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Verdana, Tahoma, sans-serif;
+      background: transparent;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .chatbox-wrap {
+      width: 360px;
+      border: 1px solid #444;
+      background: #1a1a1a;
+      font-size: 11px;
+      color: #ccc;
+    }
+
+    /* ── Header ── */
+    .cb-header {
+      background: #2a2a2a;
+      border-bottom: 1px solid #444;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: bold;
+      color: #e8a0b0;
+      letter-spacing: 0.02em;
+    }
+    .cb-header-title { font-size: 12px; }
+    .cb-header-actions { display: flex; gap: 6px; }
+    .cb-header-actions a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: normal;
+    }
+    .cb-header-actions a:hover { color: #e8a0b0; }
+
+    /* ── Messages list ── */
+    .cb-messages {
+      height: 220px;
+      overflow-y: auto;
+      background: #111;
+      scrollbar-width: thin;
+      scrollbar-color: #444 #111;
+    }
+    .cb-messages::-webkit-scrollbar { width: 6px; }
+    .cb-messages::-webkit-scrollbar-track { background: #111; }
+    .cb-messages::-webkit-scrollbar-thumb { background: #444; border-radius: 3px; }
+
+    .cb-msg {
+      padding: 5px 8px 4px;
+      border-bottom: 1px solid #1e1e1e;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      gap: 1px 8px;
+    }
+    .cb-msg:hover { background: #161616; }
+    .cb-msg-name {
+      font-weight: bold;
+      color: #e8a0b0;
+      font-size: 11px;
+      grid-column: 1;
+      grid-row: 1;
+    }
+    .cb-msg-name.owner-name { color: #a0d4b0; }
+    .cb-msg-time {
+      font-size: 9px;
+      color: #555;
+      grid-column: 2;
+      grid-row: 1;
+      text-align: right;
+      align-self: center;
+      white-space: nowrap;
+    }
+    .cb-msg-text {
+      font-size: 11px;
+      color: #bbb;
+      grid-column: 1 / 3;
+      grid-row: 2;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .owner-badge {
+      font-size: 9px;
+      background: #1a3a24;
+      color: #6dbb88;
+      border: 1px solid #2d6040;
+      padding: 0 4px;
+      border-radius: 2px;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+    .cb-msg-actions { display: none; }
+    .cb-msg:hover .cb-msg-actions {
+      display: flex;
+      gap: 6px;
+      grid-column: 1 / 3;
+      grid-row: 3;
+      margin-top: 2px;
+    }
+    .cb-act-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 9px;
+      color: #555;
+      font-family: inherit;
+      padding: 0;
+    }
+    .cb-act-btn:hover { color: #e8a0b0; }
+    .cb-act-btn.del:hover { color: #e06060; }
+
+    /* replies under a message */
+    .cb-reply {
+      padding: 4px 8px 4px 20px;
+      border-bottom: 1px solid #1a1a1a;
+      border-left: 2px solid #333;
+      background: #0e0e0e;
+    }
+    .cb-reply-name { font-size: 10px; font-weight: bold; color: #a0d4b0; }
+    .cb-reply-name.visitor { color: #9ab0d4; }
+    .cb-reply-text { font-size: 10px; color: #999; line-height: 1.45; word-break: break-word; margin-top: 1px; }
+    .cb-reply-time { font-size: 9px; color: #444; float: right; margin-left: 6px; }
+
+    /* ── Empty state ── */
+    .cb-empty {
+      padding: 30px 0;
+      text-align: center;
+      color: #444;
+      font-size: 11px;
+    }
+
+    /* ── Toolbar strip (owner bar) ── */
+    .cb-toolbar {
+      background: #c06080;
+      display: flex;
+      align-items: center;
+      padding: 3px 6px;
+      gap: 6px;
+    }
+    .cb-toolbar-icon {
+      width: 18px; height: 18px;
+      background: #a04060;
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .cb-toolbar-icon svg { width: 11px; height: 11px; stroke: #fff; fill: none; }
+    .cb-owner-status {
+      flex: 1;
+      font-size: 10px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .cb-owner-login-btn {
+      font-size: 10px;
+      background: #a04060;
+      color: #fff;
+      border: none;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 2px;
+    }
+    .cb-owner-login-btn:hover { background: #803050; }
+    .cb-notif-btn {
+      font-size: 10px;
+      background: #a04060;
+      color: #fff;
+      border: none;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-family: inherit;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .cb-notif-btn:hover { background: #803050; }
+    .cb-notif-btn.granted { background: #2d6040; color: #a0ffb0; }
+
+    /* ── Input area ── */
+    .cb-input-area {
+      background: #1a1a1a;
+      border-top: 1px solid #333;
+    }
+    .cb-input-name-row {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+      padding: 0 6px;
+      gap: 4px;
+    }
+    .cb-input-name-row svg { width: 12px; height: 12px; stroke: #666; fill: none; flex-shrink: 0; }
+    .cb-name-field {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #bbb;
+      font-size: 11px;
+      font-family: inherit;
+      padding: 6px 2px;
+    }
+    .cb-name-field::placeholder { color: #444; }
+
+    .cb-msg-row {
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      gap: 4px;
+    }
+    .cb-emoji-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 0;
+      line-height: 1;
+      opacity: 0.5;
+    }
+    .cb-emoji-btn:hover { opacity: 1; }
+    .cb-msg-field {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #bbb;
+      font-size: 11px;
+      font-family: inherit;
+      padding: 6px 2px;
+    }
+    .cb-msg-field::placeholder { color: #444; }
+    .cb-send-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 2px 3px;
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+    .cb-send-btn:hover { opacity: 1; }
+    .cb-send-btn svg { width: 14px; height: 14px; stroke: #e8a0b0; fill: none; }
+
+    /* ── Owner reply inline ── */
+    .cb-owner-reply-row {
+      display: none;
+      padding: 4px 8px;
+      background: #0e1a10;
+      border-top: 1px solid #1e3020;
+      gap: 6px;
+      align-items: center;
+    }
+    .cb-owner-reply-row.open { display: flex; }
+    .cb-owner-reply-row input {
+      flex: 1;
+      background: #111;
+      border: 1px solid #2d5030;
+      color: #a0ffb0;
+      font-size: 11px;
+      font-family: inherit;
+      padding: 4px 6px;
+      outline: none;
+    }
+    .cb-owner-reply-row input:focus { border-color: #4d8050; }
+    .cb-owner-reply-send {
+      background: #2d6040;
+      color: #a0ffb0;
+      border: none;
+      font-size: 10px;
+      font-family: inherit;
+      padding: 4px 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .cb-owner-reply-send:hover { background: #3d8050; }
+
+    /* ── Owner login modal overlay ── */
+    .cb-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+    }
+    .cb-modal-overlay.open { display: flex; }
+    .cb-modal {
+      background: #1e1e1e;
+      border: 1px solid #444;
+      padding: 16px 20px;
+      width: 240px;
+      font-size: 11px;
+    }
+    .cb-modal-title { font-weight: bold; color: #e8a0b0; margin-bottom: 10px; }
+    .cb-modal input {
+      width: 100%;
+      background: #111;
+      border: 1px solid #444;
+      color: #ccc;
+      font-size: 11px;
+      font-family: inherit;
+      padding: 5px 7px;
+      outline: none;
+      margin-bottom: 8px;
+    }
+    .cb-modal input:focus { border-color: #c06080; }
+    .cb-modal-btns { display: flex; gap: 6px; justify-content: flex-end; }
+    .cb-modal-btns button {
+      font-size: 10px;
+      font-family: inherit;
+      padding: 4px 12px;
+      cursor: pointer;
+      border: 1px solid #444;
+    }
+    #modal-login-btn { background: #c06080; color: #fff; border-color: #c06080; }
+    #modal-login-btn:hover { background: #a04060; }
+    #modal-cancel-btn { background: #333; color: #aaa; }
+    #modal-cancel-btn:hover { background: #3a3a3a; }
+    #modal-error { color: #e06060; font-size: 10px; margin-bottom: 6px; display: none; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: #222;
+      border: 1px solid #e8a0b0;
+      color: #e8a0b0;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-family: Verdana, sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 200;
+    }
+    #toast.show { opacity: 1; }
+  </style>
+</head>
+<body>
+
+<!-- ── Chatbox widget ── -->
+<div class="chatbox-wrap">
+
+  <!-- Header -->
+  <div class="cb-header">
+    <span class="cb-header-title">chatbox!</span>
+    <div class="cb-header-actions">
+      <a href="#" onclick="toggleNotif(event)" id="notif-link">🔔 notifications</a>
+      <span style="color:#444">|</span>
+      <a href="#" onclick="openLogin(event)" id="owner-link">owner</a>
+    </div>
+  </div>
+
+  <!-- Message list -->
+  <div class="cb-messages" id="cb-messages">
+    <div class="cb-empty" id="cb-empty">no messages yet. say hello!</div>
+  </div>
+
+  <!-- Toolbar: owner controls -->
+  <div class="cb-toolbar" id="cb-toolbar">
+    <div class="cb-toolbar-icon" title="Profile" aria-label="User icon">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </div>
+    <span class="cb-owner-status" id="owner-status-label">
+      <span id="owner-label-text" style="color:#fff;opacity:0.7;font-weight:normal;font-size:10px;">not signed in</span>
+    </span>
+    <button class="cb-notif-btn" id="notif-btn" onclick="toggleNotif(null)">🔔 notify me</button>
+  </div>
+
+  <!-- Name input row -->
+  <div class="cb-input-area">
+    <div class="cb-input-name-row">
+      <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <input class="cb-name-field" id="name-field" placeholder="name" maxlength="30" />
+      <svg viewBox="0 0 24 24" width="10" height="10" stroke="#555" fill="none" stroke-width="2" stroke-linecap="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </div>
+    <!-- Message input row -->
+    <div class="cb-msg-row">
+      <button class="cb-emoji-btn" title="emoji" onclick="insertEmoji()">☺</button>
+      <input class="cb-msg-field" id="msg-field" placeholder="message" maxlength="200"
+        onkeydown="if(event.key==='Enter') sendMessage()" />
+      <button class="cb-send-btn" onclick="sendMessage()" title="Send">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Owner login modal -->
+<div class="cb-modal-overlay" id="login-modal">
+  <div class="cb-modal">
+    <div class="cb-modal-title">owner sign in</div>
+    <input type="password" id="pw-field" placeholder="password"
+      onkeydown="if(event.key==='Enter') attemptLogin()" autocomplete="current-password" />
+    <div id="modal-error">wrong password, try again.</div>
+    <div class="cb-modal-btns">
+      <button id="modal-cancel-btn" onclick="closeLogin()">cancel</button>
+      <button id="modal-login-btn" onclick="attemptLogin()">sign in</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+  /* ── CONFIG ── change these ── */
+  const OWNER_PASSWORD = 'mypassword123';
+  const OWNER_NAME     = 'site owner';
+  /* ─────────────────────────── */
+
+  let messages = JSON.parse(localStorage.getItem('cb_v2_msgs') || '[]');
+  let isOwner  = false;
+  let replyTargetId = null;
+
+  function save() { localStorage.setItem('cb_v2_msgs', JSON.stringify(messages)); }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 2400);
+  }
+
+  function timeAgo(ts) {
+    const s = Math.floor((Date.now() - ts) / 1000);
+    if (s < 60) return 'just now';
+    if (s < 3600) return Math.floor(s / 60) + ' hours ago';
+    if (s < 86400) return Math.floor(s / 3600) + ' hours ago';
+    return Math.floor(s / 86400) + ' days ago';
+  }
+
+  /* ── Notifications ── */
+  function toggleNotif(e) {
+    if (e) e.preventDefault();
+    if (!('Notification' in window)) { toast('notifications not supported in this browser'); return; }
+    if (Notification.permission === 'granted') {
+      toast('notifications already enabled!');
+      updateNotifBtn(true);
+      return;
+    }
+    Notification.requestPermission().then(p => {
+      if (p === 'granted') {
+        updateNotifBtn(true);
+        toast('notifications enabled!');
+        new Notification('chatbox!', { body: "you'll be notified when new messages arrive." });
+      } else {
+        toast('notifications blocked.');
+      }
+    });
+  }
+
+  function updateNotifBtn(granted) {
+    const btn = document.getElementById('notif-btn');
+    const link = document.getElementById('notif-link');
+    if (granted) {
+      btn.textContent = '🔔 on';
+      btn.classList.add('granted');
+      link.textContent = '🔔 on';
+    }
+  }
+
+  function sendNotif(title, body) {
+    if (Notification.permission === 'granted') new Notification(title, { body });
+  }
+
+  /* ── Owner login ── */
+  function openLogin(e) {
+    if (e) e.preventDefault();
+    if (isOwner) { ownerLogout(); return; }
+    document.getElementById('login-modal').classList.add('open');
+    setTimeout(() => document.getElementById('pw-field').focus(), 50);
+  }
+
+  function closeLogin() {
+    document.getElementById('login-modal').classList.remove('open');
+    document.getElementById('pw-field').value = '';
+    document.getElementById('modal-error').style.display = 'none';
+  }
+
+  function attemptLogin() {
+    const pw = document.getElementById('pw-field').value;
+    if (pw === OWNER_PASSWORD) {
+      isOwner = true;
+      document.getElementById('owner-label-text').textContent = '✓ owner';
+      document.getElementById('owner-label-text').style.color = '#a0ffb0';
+      document.getElementById('owner-link').textContent = 'sign out';
+      closeLogin();
+      toast('signed in as owner');
+      render();
+    } else {
+      document.getElementById('modal-error').style.display = 'block';
+      document.getElementById('pw-field').value = '';
+    }
+  }
+
+  function ownerLogout() {
+    isOwner = false;
+    document.getElementById('owner-label-text').textContent = 'not signed in';
+    document.getElementById('owner-label-text').style.color = '';
+    document.getElementById('owner-link').textContent = 'owner';
+    toast('signed out');
+    render();
+  }
+
+  /* ── Send message ── */
+  function sendMessage() {
+    const name = document.getElementById('name-field').value.trim();
+    const text = document.getElementById('msg-field').value.trim();
+    if (!name || !text) { toast('enter a name and message!'); return; }
+
+    messages.push({ id: Date.now(), name, text, ts: Date.now(), replies: [] });
+    save();
+    document.getElementById('msg-field').value = '';
+    sendNotif('new chatbox message!', name + ': ' + text);
+    render();
+    scrollBottom();
+  }
+
+  /* ── Owner reply ── */
+  function openOwnerReply(id) {
+    // close any open reply rows first
+    document.querySelectorAll('.cb-owner-reply-row.open').forEach(r => r.classList.remove('open'));
+    if (replyTargetId === id) { replyTargetId = null; return; }
+    replyTargetId = id;
+    const row = document.getElementById('owner-reply-' + id);
+    if (row) {
+      row.classList.add('open');
+      row.querySelector('input').focus();
+    }
+  }
+
+  function sendOwnerReply(id) {
+    const inp = document.getElementById('owner-reply-input-' + id);
+    const text = inp.value.trim();
+    if (!text) return;
+    const msg = messages.find(m => m.id === id);
+    if (!msg) return;
+    msg.replies.push({ id: Date.now(), name: OWNER_NAME, text, ts: Date.now(), isOwner: true });
+    save();
+    replyTargetId = null;
+    toast('reply sent!');
+    render();
+  }
+
+  function deleteMsg(id) {
+    if (!confirm('delete this message?')) return;
+    messages = messages.filter(m => m.id !== id);
+    save();
+    render();
+  }
+
+  /* ── Emoji ── */
+  function insertEmoji() {
+    const emojis = ['☺','♥','★','✿','◕‿◕','ヽ(•‿•)ノ','(´｡• ω •｡`)','uwu','( ˘ ³˘)'];
+    const pick = emojis[Math.floor(Math.random() * emojis.length)];
+    const field = document.getElementById('msg-field');
+    field.value += pick;
+    field.focus();
+  }
+
+  /* ── Render ── */
+  function render() {
+    const container = document.getElementById('cb-messages');
+    const empty = document.getElementById('cb-empty');
+
+    if (messages.length === 0) {
+      container.innerHTML = '<div class="cb-empty">no messages yet. say hello!</div>';
+      return;
+    }
+
+    container.innerHTML = '';
+    [...messages].forEach(m => {
+      // message row
+      const row = document.createElement('div');
+      row.className = 'cb-msg';
+      row.innerHTML = `
+        <span class="cb-msg-name">${esc(m.name)}</span>
+        <span class="cb-msg-time">${timeAgo(m.ts)}</span>
+        <span class="cb-msg-text">${esc(m.text)}</span>
+        <div class="cb-msg-actions">
+          ${isOwner ? `<button class="cb-act-btn" onclick="openOwnerReply(${m.id})">↩ reply as owner</button>` : ''}
+          ${isOwner ? `<button class="cb-act-btn del" onclick="deleteMsg(${m.id})">✕ delete</button>` : ''}
+        </div>
+      `;
+      container.appendChild(row);
+
+      // replies
+      m.replies.forEach(r => {
+        const rDiv = document.createElement('div');
+        rDiv.className = 'cb-reply';
+        rDiv.innerHTML = `
+          <span class="cb-reply-time">${timeAgo(r.ts)}</span>
+          <span class="cb-reply-name ${r.isOwner ? '' : 'visitor'}">${esc(r.name)}${r.isOwner ? ' <span style="color:#2d8050;font-size:9px;">[owner]</span>' : ''}</span>
+          <div class="cb-reply-text">${esc(r.text)}</div>
+        `;
+        container.appendChild(rDiv);
+      });
+
+      // owner reply input row
+      if (isOwner) {
+        const replyRow = document.createElement('div');
+        replyRow.className = 'cb-owner-reply-row' + (replyTargetId === m.id ? ' open' : '');
+        replyRow.id = 'owner-reply-' + m.id;
+        replyRow.innerHTML = `
+          <input type="text" id="owner-reply-input-${m.id}" placeholder="reply as owner…"
+            onkeydown="if(event.key==='Enter') sendOwnerReply(${m.id})" maxlength="200" />
+          <button class="cb-owner-reply-send" onclick="sendOwnerReply(${m.id})">send</button>
+        `;
+        container.appendChild(replyRow);
+      }
+    });
+  }
+
+  function scrollBottom() {
+    const c = document.getElementById('cb-messages');
+    c.scrollTop = c.scrollHeight;
+  }
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  /* ── Init ── */
+  if (Notification.permission === 'granted') updateNotifBtn(true);
+  render();
+</script>
+</body>
+</html>

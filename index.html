@@ -4,28 +4,145 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>gabriel moon</title>
-<meta property="og:title" content="gabriel moon"> 
-<meta property="og:description" content="the coolest website you'll ever see">
-<meta property="og:image" content="https://i.ibb.co/tMwskxNT/image-2025-12-04-184407123.png">
-<meta property="og:url" content="https://gabrielmoon.art"> 
-<meta property="og:type" content="website"> </head>
-
+  <meta property="og:title" content="gabriel moon">
+  <meta property="og:description" content="the coolest website you'll ever see">
+  <meta property="og:image" content="https://i.ibb.co/tMwskxNT/image-2025-12-04-184407123.png">
+  <meta property="og:url" content="https://gabrielmoon.art">
+  <meta property="og:type" content="website">
   <link rel="icon" href="https://i.ibb.co/tMwskxNT/image-2025-12-04-184407123.png" type="image/x-icon">
- <link rel="stylesheet" href="./css/style.css">
-</head>
-<style>
-    figure {
-      display: flex;
-      justify-content: center;
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    /* ── Layout shell ── */
+    .page-body {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 36px 20px 60px;
     }
-    figure img {
-      width: 600px; /* adjust size */
-      height: auto;
+
+    /* ── Video embed ── */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 16px;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* ── Spotify ── */
+    .spotify-wrap {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .spotify-wrap iframe {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* ── Album title ── */
+    .moonland-title {
+      font-size: 22px;
+      letter-spacing: 1px;
+      margin: 14px 0 28px;
+      text-shadow:
+        0 0 20px rgba(255,255,255,0.25),
+        0 0 40px rgba(255,255,255,0.15);
+      font-family: "Arial";
+      font-style: italic;
+      color: #ededed;
+      text-align: center;
+    }
+
+    /* ── Two-column lower section ── */
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* ── Section labels ── */
+    .section-label {
+      font-family: "Arial";
+      font-style: italic;
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 2px;
+      text-transform: lowercase;
+      margin-bottom: 10px;
+    }
+
+    /* ── Social icons ── */
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px 6px;
+    }
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .icon p {
+      font-size: 11px;
+      color: #ccc;
+      margin: 0;
+      font-family: "Arial";
+      font-style: italic;
+    }
+    .clickable-img {
+      width: 38px;
+      height: 38px;
+      transition: filter 0.25s, transform 0.2s;
+      cursor: pointer;
+    }
+    .clickable-img:hover {
+      filter: brightness(1.5);
+      transform: translateY(-2px);
+    }
+
+    /* ── Chatbox ── */
+    .chatbox-wrap iframe {
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      display: block;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 28px 0;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 620px) {
+      .lower-grid {
+        grid-template-columns: 1fr;
+      }
+      .social-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
   </style>
+</head>
 <body>
 <div id="particles"></div>
-  <!-- navbar -->
+
+<!-- navbar -->
 <div class="topnav">
   <div class="site-title">
     <a href="https://gabrielmoon.art">gabriel moon</a>
@@ -37,71 +154,99 @@
     <a href="/aboutme.html">about me</a>
   </nav>
 </div>
-  <figure>
-<div class="moonland-section">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QOvEsgHnI_g?si=NFcx1EoJGY7Cnz2e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/02P0tFdARAHIUjAVJbaSSX?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+<!-- main content -->
+<div class="page-body">
+
+  <!-- YouTube video -->
+  <div class="video-wrap">
+    <iframe src="https://www.youtube.com/embed/QOvEsgHnI_g?si=NFcx1EoJGY7Cnz2e"
+      title="YouTube video player"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <!-- Spotify -->
+  <div class="spotify-wrap">
+    <iframe src="https://open.spotify.com/embed/album/02P0tFdARAHIUjAVJbaSSX?utm_source=generator"
+      height="152"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"></iframe>
+  </div>
 
   <h4 class="moonland-title">MOONLAND. OUT. NOW. LISTEN. NOW.</h4>
 
+  <hr class="divider">
+
+  <!-- Two-column: socials + chatbox -->
+  <div class="lower-grid">
+
+    <!-- Social links -->
+    <div>
+      <p class="section-label">// social links</p>
+      <div class="social-grid">
+        <div class="icon">
+          <a href="https://www.instagram.com/gabrielsmoons" target="_blank">
+            <img src="./images/instagram.png" alt="Instagram" class="clickable-img">
+          </a>
+          <p>instagram</p>
+        </div>
+        <div class="icon">
+          <a href="https://gabrielmoon.bandcamp.com" target="_blank">
+            <img src="./images/bandcamp.png" alt="Bandcamp" class="clickable-img">
+          </a>
+          <p>bandcamp</p>
+        </div>
+        <div class="icon">
+          <a href="https://www.tiktok.com/@gabrielsmoons" target="_blank">
+            <img src="./images/tiktok.png" alt="TikTok" class="clickable-img">
+          </a>
+          <p>tiktok</p>
+        </div>
+        <div class="icon">
+          <a href="https://open.spotify.com/artist/6kJqrZKzkweq2znzljyM2q?si=Qe87-pC6SEuMJrYv52IK_w" target="_blank">
+            <img src="./images/spotify.png" alt="Spotify" class="clickable-img">
+          </a>
+          <p>spotify</p>
+        </div>
+        <div class="icon">
+          <a href="https://www.youtube.com/@gabrielmoonsong" target="_blank">
+            <img src="./images/youtube.png" alt="YouTube" class="clickable-img">
+          </a>
+          <p>youtube</p>
+        </div>
+        <div class="icon">
+          <a href="https://soundcloud.com/gabrielmoon" target="_blank">
+            <img src="./images/soundcloud.avif" alt="Soundcloud" class="clickable-img">
+          </a>
+          <p>soundcloud</p>
+        </div>
+        <div class="icon">
+          <a href="https://discord.gg/zuJSN7YbHP" target="_blank">
+            <img src="./images/discord.png" alt="Discord" class="clickable-img">
+          </a>
+          <p>discord</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chatbox -->
+    <div class="chatbox-wrap">
+      <p class="section-label">// chatbox</p>
+      <iframe src="https://www3.cbox.ws/box/?boxid=3556015&boxtag=jau8Vw"
+        height="350"
+        allowtransparency="yes"
+        allow="autoplay"
+        scrolling="auto"></iframe>
+    </div>
+
+  </div>
 </div>
-  </figure>
-<div class="social-section">
-  <h3>Social Links:</h3>
-</div>
-<div class="image-row">
-  <div class="icon">
-    <a href="https://www.instagram.com/gabrielsmoons" target="_blank">
-      <img src="./images/instagram.png" alt="Instagram" class="clickable-img">
-    </a>
-    <p>Instagram</p>
-  </div>
 
-  <div class="icon">
-    <a href="https://gabrielmoon.bandcamp.com" target="_blank">
-      <img src="./images/bandcamp.png" alt="Bandcamp" class="clickable-img">
-    </a>
-    <p>Bandcamp</p>
-  </div>
+<!-- floating moongirls -->
+<img src="https://i.ibb.co/Gvr5HQ8D/moongirl.gif" class="moongirl-left" alt="moongirl">
+<img src="https://i.ibb.co/Gvr5HQ8D/moongirl.gif" class="moongirl-right" alt="moongirl">
 
-  <div class="icon">
-    <a href="https://www.tiktok.com/@gabrielsmoons" target="_blank">
-      <img src="./images/tiktok.png" alt="TikTok" class="clickable-img">
-    </a>
-    <p>TikTok</p>
-  </div>
-
-  <div class="icon">
-    <a href="https://open.spotify.com/artist/6kJqrZKzkweq2znzljyM2q?si=Qe87-pC6SEuMJrYv52IK_w" target="_blank">
-      <img src="./images/spotify.png" alt="Spotify" class="clickable-img">
-    </a>
-    <p>Spotify</p>
-  </div>
-
-  <div class="icon">
-    <a href="https://www.youtube.com/@gabrielmoonsong" target="_blank">
-      <img src="./images/youtube.png" alt="YouTube" class="clickable-img">
-    </a>
-    <p>YouTube</p>
-  </div>
-  
-  <div class="icon">
-    <a href="https://soundcloud.com/gabrielmoon" target="_blank">
-      <img src="./images/soundcloud.avif" alt="Soundcloud" class="clickable-img">
-    </a>
-    <p>Soundcloud</p>
-  </div>
-  
-   <div class="icon">
-    <a href="https://discord.gg/zuJSN7YbHP" target="_blank">
-      <img src="./images/discord.png" alt="Discord" class="clickable-img">
-    </a>
-    <p>Discord</p>
-  </div>
-</div>
-  <!-- moongirls -->
-  <img src="https://i.ibb.co/Gvr5HQ8D/moongirl.gif" class="moongirl-left" alt="moongirl">
-  <img src="https://i.ibb.co/Gvr5HQ8D/moongirl.gif" class="moongirl-right" alt="moongirl">
 <script src="/js/index.js"></script>
 </body>
-</html> 
+</html>
